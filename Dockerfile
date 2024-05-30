@@ -1,4 +1,4 @@
-FROM openjdk:17
+FROM openjdk:23-slim
 COPY src /app/
 WORKDIR /app
 EXPOSE 8081
