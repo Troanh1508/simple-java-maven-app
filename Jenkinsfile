@@ -33,7 +33,7 @@ pipeline {
         }
         success {
             echo 'I succeeded!'
-            
+            emailext body: "Completed successfully. ${BUILD_URL}", subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) succeeded", to: 'looksunnoglare@gmail.com'
         }
         unstable {
             echo 'I am unstable :/'
