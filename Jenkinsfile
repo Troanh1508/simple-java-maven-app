@@ -27,14 +27,14 @@ pipeline {
         }
         stage ('Build Docker Image') {
             steps {
-                sh 'docker build -t troanh1508/maven-app:latest .'
+                sh 'docker build -t troanh1508/maven-app:2.0 .'
             }
         }
         stage ('Deploy to Docker Hub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                     sh 'docker login -u $USERNAME -p $PASSWORD'
-                    sh 'docker push troanh1508/maven-app:latest'
+                    sh 'docker push troanh1508/maven-app:2.0'
                 }
             }
         }
