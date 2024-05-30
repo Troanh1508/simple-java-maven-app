@@ -42,7 +42,7 @@ pipeline {
             steps{
                 echo 'I failed :('
                 emailext
-                to: "looksunnoglare@gmail.com",
+                to: 'looksunnoglare@gmail.com',
                 body: "Something is wrong with '${JOB_NAME}' '${env.BUILD_URL}'", 
                 subject: "Failed Pipeline: '${currentBuild.fullDisplayName}'"                
             }
