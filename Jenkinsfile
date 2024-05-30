@@ -41,9 +41,9 @@ pipeline {
         failure {
             echo 'I failed :('
             emailext
-                to: "looksunnoglare@gmail.com",
-                body: "Something is wrong with ${env.BUILD_URL}", 
-                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}"
+                body: "Something is wrong with '${JOB_NAME}' '${env.BUILD_URL}'", 
+                subject: "Failed Pipeline: '${currentBuild.fullDisplayName}'",
+                to: "looksunnoglare@gmail.com"
         }
         changed {
             echo 'Things were different before...'
