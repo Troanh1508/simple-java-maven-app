@@ -6,7 +6,9 @@ pipeline {
     }
     stages {
         stage('Static Code Analysis') {
-            build job: 'static-code-analysis'
+            steps {
+                build job: 'static-code-analysis'
+            }
         }
         stage('Build') {
             steps {
