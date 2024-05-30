@@ -39,11 +39,13 @@ pipeline {
             echo 'I am unstable :/'
         }
         failure {
-            echo 'I failed :('
-            emailext
+            steps{
+                echo 'I failed :('
+                emailext
+                to: "looksunnoglare@gmail.com",
                 body: "Something is wrong with '${JOB_NAME}' '${env.BUILD_URL}'", 
-                subject: "Failed Pipeline: '${currentBuild.fullDisplayName}'",
-                to: "looksunnoglare@gmail.com"
+                subject: "Failed Pipeline: '${currentBuild.fullDisplayName}'"                
+            }
         }
         changed {
             echo 'Things were different before...'
