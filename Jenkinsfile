@@ -38,7 +38,7 @@ pipeline {
         unstable {
             echo 'I am unstable :/'
         }
-        failure {
+        failur {
             echo 'I failed :('
             emailext body: "Please go to ${BUILD_URL} and verify the build", subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) failed", to: 'looksunnoglare@gmail.com'                
         }
