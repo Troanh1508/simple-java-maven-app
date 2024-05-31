@@ -27,14 +27,18 @@ pipeline {
         }
         stage ('Build Docker Image') {
             steps {
-                sh 'docker build -t troanh1508/maven-app:2.0 .'
+                sh 'docker build -t troanh1508/maven-app:3.0 .'
             }
         }
         stage ('Deploy to Docker Hub') {
+            environment {
+                DOCKERHUB_CREDS = credentials('docker-hub')
+            }
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
-                    sh 'docker login -u $USERNAME -p $PASSWORD'
-                    sh 'docker push troanh1508/maven-app:2.0'
+                withCredentials([usernameColonPassword(credentialsId: 'docker-hub', variable: '')]) {
+                    sh 'echo "$DOCKERHUB_CREDS_PSW" > file.txt'
+                    sh 'cat file.txt | docker login -u $DOCKERHUB_CREDS_USR --password-stdin'
+                    sh 'docker push troanh1508/maven-app:3.0'
                 }
             }
         }
