@@ -50,14 +50,20 @@ pipeline {
         }
         success {
             echo 'I succeeded!'
-            emailext body: "Completed successfully. ${BUILD_URL}", subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) succeeded", to: 'looksunnoglare@gmail.com'
+            emailext attachLog: true,
+                body: "Completed successfully. ${BUILD_URL}",
+                subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) succeeded",
+                to: 'looksunnoglare@gmail.com'
         }
         unstable {
             echo 'I am unstable :/'
         }
         failure {
             echo 'I failed :('
-            emailext body: "Please go to ${BUILD_URL} and verify the build", subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) failed", to: 'looksunnoglare@gmail.com'                
+            emailext attachLog: true,
+                body: "Please go to ${BUILD_URL} and verify the build",
+                subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) failed",
+                to: 'looksunnoglare@gmail.com'                
         }
         changed {
             echo 'Things were different before...'
